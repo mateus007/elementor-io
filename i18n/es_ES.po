@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Elementor IO\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-22 10:32-0300\n"
-"PO-Revision-Date: 2019-11-22 10:33-0300\n"
+"POT-Creation-Date: 2020-10-05 11:27-0300\n"
+"PO-Revision-Date: 2020-10-05 11:28-0300\n"
 "Last-Translator: Mateus Souza <mateussouzaweb@gmail.com>\n"
 "Language-Team: Mateus Souza <mateussouzaweb@gmail.com>\n"
 "Language: es\n"
@@ -13,70 +13,91 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 2.4.1\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: elemento-io.php:24 elemento-io.php:25 elemento-io.php:52
-msgid "Elementor IO"
-msgstr "Elementor IO"
+#: elementor-io.php:24 elementor-io.php:25
+msgid "Importer / Exporter"
+msgstr "Importador / Exportador"
 
-#: elemento-io.php:62
+#: elementor-io.php:52
+msgid "Elementor IO - Importer / Exporter"
+msgstr "Elementor IO - Importador / Exportador"
+
+#: elementor-io.php:56
+msgid "WARNING:"
+msgstr "ADVERTENCIA:"
+
+#: elementor-io.php:56
+msgid ""
+"This plugin works by replacing content. Do not remove the current content of "
+"your website before importing it. When importing, the plugin will "
+"automatically replace the content and layout."
+msgstr ""
+"Este plugin funciona reemplazando contenido. No elimine el contenido actual "
+"de su sitio web antes de importarlo. Al importar, el plugin reemplazará "
+"automáticamente el contenido y el diseño."
+
+#: elementor-io.php:66
 msgid "Import / Replace"
 msgstr "Importar / Reemplazar"
 
-#: elemento-io.php:67
+#: elementor-io.php:71
 msgid "Bulk"
 msgstr "Masivo"
 
-#: elemento-io.php:69
+#: elementor-io.php:73
 msgid "Single"
 msgstr "Individual"
 
-#: elemento-io.php:75
+#: elementor-io.php:79
 msgid "Content are matched from slug inside each file that was exported."
 msgstr "El contenido coincide con slug dentro de cada archivo que se exportó."
 
-#: elemento-io.php:80
+#: elementor-io.php:84
 msgid "Files:"
 msgstr "Archivos:"
 
-#: elemento-io.php:96 elemento-io.php:145
+#: elementor-io.php:100 elementor-io.php:149
 msgid "Content:"
 msgstr "Contenido:"
 
-#: elemento-io.php:107
+#: elementor-io.php:111
 msgid "File:"
 msgstr "Archivo:"
 
-#: elemento-io.php:131 elemento-io.php:133
+#: elementor-io.php:135 elementor-io.php:137
 msgid "Import"
 msgstr "Importar"
 
-#: elemento-io.php:132 elemento-io.php:167
+#: elementor-io.php:136 elementor-io.php:171
 msgid "Please Wait..."
 msgstr "Por favor espera..."
 
-#: elemento-io.php:142 elemento-io.php:166 elemento-io.php:168
+#: elementor-io.php:146 elementor-io.php:170 elementor-io.php:172
 msgid "Export"
 msgstr "Exportar"
 
-#: elemento-io.php:401
+#: elementor-io.php:407
 msgid "Content imported."
 msgstr "Contenido importado."
 
-#: elemento-io.php:502
+#: elementor-io.php:508
 msgid "Content does not exists: "
 msgstr "El contenido no existe: "
 
-#: elemento-io.php:508
+#: elementor-io.php:514
 msgid "Not a Elementor content: "
 msgstr "No es un contenido de Elementor: "
 
-#: elemento-io.php:529
+#: elementor-io.php:654
 msgid "Content file not uploaded or invalid: "
 msgstr "Archivo de contenido no cargado o no válido: "
 
-#: elemento-io.php:538
-msgid "Content file is empty or bad formated: "
+#: elementor-io.php:663
+msgid "Content file is empty or bad formatted: "
 msgstr "El archivo de contenido está vacío o tiene un formato incorrecto: "
+
+#~ msgid "Elementor IO"
+#~ msgstr "Elementor IO"
