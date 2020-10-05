@@ -4,7 +4,7 @@
  * Description: Elementor IO brings input and output support to any Elementor and Elementor Pro content. You now can easily import and export content with a few clicks.
  * Plugin URI: https://mateussouzaweb.com/
  * Author: Mateus Souza
- * Version: 1.0.0
+ * Version: 1.1.0
  * Author URI: https://mateussouzaweb.com/
  * Text Domain: elementor-io
  */
@@ -21,8 +21,8 @@ function elementorIoAdminMenuSetup(){
 
     add_submenu_page(
         'elementor',
-        __('Elementor IO', ELEMENTOR_IO_PLUGIN),
-        __('Elementor IO', ELEMENTOR_IO_PLUGIN),
+        __('Importer / Exporter', ELEMENTOR_IO_PLUGIN),
+        __('Importer / Exporter', ELEMENTOR_IO_PLUGIN),
         'manage_options',
         'elementor-io-admin',
         'elementorIoAdminPage'
@@ -49,8 +49,12 @@ function elementorIoAdminPage(){
     <div class="wrap elementor-io-wrap">
 
         <h1 class="wp-heading-inline">
-            <?php _e('Elementor IO', ELEMENTOR_IO_PLUGIN) ?>
+            <?php _e('Elementor IO - Importer / Exporter', ELEMENTOR_IO_PLUGIN) ?>
         </h1>
+
+        <div class="notice warning">
+            <p><b><?php _e('WARNING:', ELEMENTOR_IO_PLUGIN) ?></b> <?php _e('This plugin works by replacing content. Do not remove the current content of your website before importing it. When importing, the plugin will automatically replace the content and layout.', ELEMENTOR_IO_PLUGIN) ?></p>
+        </div>
 
         <div class="columns">
 
@@ -230,7 +234,9 @@ function elementorIoAdminPage(){
         .elementor-io-wrap .tab.active{
             display: block;
         }
-
+        .elementor-io-wrap .tab .description{
+            display: block;
+        }
         .elementor-io-wrap .results{
             padding: 20px 0;
             max-width: 900px;
@@ -468,7 +474,7 @@ function elementorIoGetContents(){
 
     foreach( $results as $item ){
         $contents[] = array(
-            'id' =>  $item->ID,
+            'id' => $item->ID,
             'type' => $item->post_type,
             'title' => $item->post_title,
             'slug' => $item->post_name
@@ -588,6 +594,49 @@ function elementorIoImportCarouselAttachments($data){
 }
 
 /**
+ * Recursive clean image ID on import to avoid issues with filesystem
+ * @param array $data
+ * @return array
+ */
+function elementorIoImportCleanImageIds($data){
+
+    // Found image match
+    if( isset($data['image'])
+        AND is_array($data['image'])
+        AND isset($data['image']['id']) ){
+
+        $image = $data['image'];
+        unset($image['id']);
+        $data['image'] = $image;
+
+        return $data;
+    }
+
+    // Found background image match
+    if( isset($data['background_overlay_image'])
+        AND is_array($data['background_overlay_image'])
+        AND isset($data['background_overlay_image']['id']) ){
+
+        $image = $data['background_overlay_image'];
+        unset($image['id']);
+        $data['background_overlay_image'] = $image;
+
+        return $data;
+    }
+
+    if( !is_array($data) ){
+        return $data;
+    }
+
+    // Search on child
+    foreach( $data as $key => $value ){
+        $data[ $key ] = elementorIoImportCleanImageIds($value);
+    }
+
+    return $data;
+}
+
+/**
  * Import file content to given elementor object
  * @param resource $file
  * @param mixed $contentKey
@@ -611,7 +660,7 @@ function elementorIoImportFromFile($file, $contentKey = NULL){
     $json = json_decode($json, TRUE);
 
     if( !$json ){
-        throw new Exception(__('Content file is empty or bad formated: ', ELEMENTOR_IO_PLUGIN). $name);
+        throw new Exception(__('Content file is empty or bad formatted: ', ELEMENTOR_IO_PLUGIN). $name);
     }
 
     // Check post
@@ -637,6 +686,7 @@ function elementorIoImportFromFile($file, $contentKey = NULL){
     $data = $json['data'];
     $data = elementorIoImportSvgAttachments($data);
     $data = elementorIoImportCarouselAttachments($data);
+    $data = elementorIoImportCleanImageIds($data);
     $data = wp_json_encode($data);
     $data = wp_slash($data);
 
