@@ -256,7 +256,7 @@ function elementorIoAdminPage(){
                 area
                 .find('.tab')
                 .find('[required]')
-                .removeProp('required')
+                .removeAttr('required')
                 .prop('disabled', true);
 
                 area.find('.tabs a.active').removeClass('active');
@@ -268,7 +268,7 @@ function elementorIoAdminPage(){
                 area
                 .find(this.dataset.tab)
                 .find('input, select')
-                .removeProp('disabled')
+                .removeAttr('disabled')
                 .prop('required', true);
 
             });
@@ -305,7 +305,7 @@ function elementorIoAdminPage(){
                     cache: false,
                     success: function(data){
 
-                        button.removeProp('disabled');
+                        button.removeAttr('disabled');
                         button.prop('value', button.data('default'));
 
                         if( typeof data == 'string' ){
@@ -333,7 +333,7 @@ function elementorIoAdminPage(){
                     },
                     error: function (e) {
 
-                        button.removeProp('disabled');
+                        button.removeAttr('disabled');
                         button.prop('value', button.data('default'));
 
                         html = html.replace('{CLASS}', 'error');
